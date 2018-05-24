@@ -9,6 +9,9 @@ public class Library {
 
 
     public Library(List<Book> books) {
+        if (books.isEmpty()) {
+            throw new IllegalArgumentException("Book list cannot not be empty!");
+        }
         this.books.addAll(books);
     }
 

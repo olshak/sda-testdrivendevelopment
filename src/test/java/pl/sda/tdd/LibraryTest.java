@@ -14,7 +14,7 @@ public class LibraryTest {
     private Book book3 = new Book("Ewa", "Srednia", 15, LocalDate.of(1980, 2, 3));
     private Book book4 = new Book("Anna", "Kijowa", 1, LocalDate.of(1970, 2, 2));
 
-    private Library library;
+    private Library library = new Library(Arrays.asList(book1, book2, book3, book4));
 
     @Test
     public void shouldThowIllegalArgumentExceptionWhenBookListIsEmpty() {
@@ -22,14 +22,12 @@ public class LibraryTest {
             new Library(new ArrayList<>());
             Assert.fail("Library should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            Assert.assertEquals("Book list should not be empty!", e.getMessage());
+            Assert.assertEquals("Book list cannot not be empty!", e.getMessage());
         }
     }
 
     @Test
     public void shouldReturnAuthorList() {
-        library = new Library(Arrays.asList(book1, book2, book3, book4));
-
         Assert.assertEquals(Arrays.asList(
                 book1.getAuthor(),
                 book2.getAuthor(),
@@ -40,8 +38,6 @@ public class LibraryTest {
 
     @Test
     public void shouldReturnTotalPrice() {
-        library = new Library(Arrays.asList(book1, book2, book3, book4));
-
         Assert.assertEquals(
                 book1.getPrice() +
                         book2.getPrice() +
@@ -52,8 +48,6 @@ public class LibraryTest {
 
     @Test
     public void shouldReturnFormattedAuthors() {
-        library = new Library(Arrays.asList(book1, book2, book3, book4));
-
         Assert.assertEquals(
                 "- " + book1.getAuthor() + "\n" +
                         "- " + book2.getAuthor() + "\n" +
