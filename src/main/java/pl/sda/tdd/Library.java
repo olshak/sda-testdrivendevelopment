@@ -7,20 +7,22 @@ import java.util.stream.Collectors;
 public class Library {
     private List<Book> books = new ArrayList<>();
 
-    public static boolean filterOutAnteks(Book book) {
-        return !book.getAuthor().equals("Antek");
-    }
 
     public Library(List<Book> books) {
         this.books.addAll(books);
     }
 
-    public List<String> getAuthors() {
+    public List<?> getAuthors() {
         return books.stream().map(Book::getAuthor).collect(Collectors.toList());
     }
 
-    public List<Book> getNotAnteks() {
-        return books.stream().filter(Library::filterOutAnteks).collect(Collectors.toList());
+    public int getTotalPrice() {
+        return books.stream().map(Book::getPrice).reduce(0, (sum, price) -> sum + price);
     }
+
+    public String getFormattedAuthors() {
+        return books.stream().map(Book::getAuthor).reduce("", (raport, author) -> raport + "- " + author + "\n");
+    }
+
 
 }
