@@ -12,8 +12,16 @@ public class Library {
         this.books.addAll(books);
     }
 
-    public List<?> getAuthors() {
+    public List<String> getAuthors() {
         return books.stream().map(Book::getAuthor).collect(Collectors.toList());
+    }
+
+    public List<String> getTitles() {
+        return books.stream().map(Book::getTitle).collect(Collectors.toList());
+    }
+
+    public List<Integer> getPrices() {
+        return books.stream().map(Book::getPrice).collect(Collectors.toList());
     }
 
     public int getTotalPrice() {
